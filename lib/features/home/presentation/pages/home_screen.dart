@@ -16,6 +16,7 @@ final List<String> authors = [
   'Author three',
   'Author four',
   'Author five',
+
 ];
 
 class HomeScreen extends StatelessWidget {

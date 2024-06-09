@@ -13,7 +13,6 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> languages = ['English', 'Hindi', 'Marathi', 'Arabic'];
-
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.white,

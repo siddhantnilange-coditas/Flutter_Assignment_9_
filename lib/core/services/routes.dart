@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:navigation_assignment/core/services/page_route_constants.dart';
@@ -50,6 +51,8 @@ final router = GoRouter(
     //   name: MyAppRouteConstants.registerRouteName,
     //   builder: (context, state) => Registration(),
     // ),
+
+
     StatefulShellRoute.indexedStack(
       builder: (
         BuildContext context,
@@ -63,6 +66,10 @@ final router = GoRouter(
           navigatorKey: homeTabNavigatorKey,
           routes: [
             GoRoute(
+              // initialLocation: '/home',
+              // redirect: (context, state) {
+              //     return FirebaseAuth.instance.authStateChanges() == true ? '/home' : '/login';
+              // },
               path: '/home',
               name: MyAppRouteConstants.homeRouteName,
               // builder: (context, state) => HomeScreen(),
@@ -121,7 +128,7 @@ final router = GoRouter(
               pageBuilder: (context, state) {
                 return MaterialPage(
                   key: state.pageKey,
-                  child: booksScreen(),
+                  child: BooksScreen(),
                 );
               },
               // routes:

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
@@ -37,21 +38,29 @@ class SplashScreenState extends State<SplashScreen> {
 
   void whereToRedirect() async {
     final sharedPref = await SharedPreferences.getInstance();
-    final isLoggined = sharedPref.getBool(loginStatus);
-    sharedPref.setBool(loginStatus, false);
+    final bool? isLoggedIn = await sharedPref.getBool('isLoggedIn') ?? false;
+    // sharedPref.setBool('loginStatus', false);
 
-    Timer(Duration(seconds: 2), () {
-      if (isLoggined != null) {
-        if (isLoggined) {
-          context.go('/home');
-        } else {
-          context.go('/login');
-        }
-        ;
-      } else {
-        context.go('/onboarding');
+    Timer(Duration(seconds: 1), () {
+      // if (isLoggined != null) {
+      //   if (isLoggined) {
+      //     context.go('/home');
+      //   } else {
+      //     context.go('/login');
+      //   }
+      //   ;
+      // } else {
+      //   context.go('/onboarding');
+      // }
+      // ;
+      if(isLoggedIn!){
+        context.go('/home');
+      } else if(!isLoggedIn){
+         context.go('/login');
       }
-      ;
+      else {
+       context.go('/onboarding');
+      }
     }
     );
   }

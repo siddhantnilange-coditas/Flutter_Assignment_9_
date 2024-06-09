@@ -1,11 +1,11 @@
-abstract class InitialLangugageEvent{
+// abstract class InitialLangugageEvent{
 
-}
+// }
 
-class SelectedLanguageEvent extends InitialLangugageEvent{
-   final int selectedIndex;
+// class SelectedLanguageEvent extends InitialLangugageEvent{
+//    final String selectedLanguage;
 
-   SelectedLanguageEvent(this.selectedIndex);
-}
+//    SelectedLanguageEvent(this.selectedLanguage);
+// }
 
 

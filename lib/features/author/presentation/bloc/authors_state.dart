@@ -9,16 +9,16 @@ class AuthorInitial extends AuthorsState {}
 class AuthorLoading extends AuthorsState {}
 
 class AuthorsLoaded extends AuthorsState {
-  final List<String> authors;
+  // final List<String> authors;
 
-  AuthorsLoaded(this.authors);
+  // AuthorsLoaded(this.authors);
 
 }
 
 class AuthorDetailsLoaded extends AuthorsState {
-  final String author;
+  final int index;
 
-  AuthorDetailsLoaded(this.author);
+  AuthorDetailsLoaded(this.index);
 
 }
 

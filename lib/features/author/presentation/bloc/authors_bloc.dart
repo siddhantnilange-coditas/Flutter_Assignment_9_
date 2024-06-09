@@ -16,13 +16,13 @@ class AuthorsBloc extends Bloc<AuthorEvent, AuthorsState> {
       LoadAuthors event, Emitter<AuthorsState> emit) async {
     emit(AuthorLoading());
     await Future.delayed(Duration(seconds: 1));
-    emit(AuthorsLoaded(authors));
+    emit(AuthorsLoaded());
   }
 
   FutureOr<void> loadAuthorDetails(
       LoadAuthorDetails event, Emitter<AuthorsState> emit) async {
     emit(AuthorLoading());
     await Future.delayed(Duration(seconds: 1));
-    emit(AuthorDetailsLoaded(authors[event.index]));
+    emit(AuthorDetailsLoaded(event.index));
   }
 }

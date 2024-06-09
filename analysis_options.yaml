@@ -11,7 +11,7 @@ dart_code_linter:
     - test/**
   rules:
     - avoid-dynamic
-    - avoid-passing-async-when-sync-expected
+    # - avoid-passing-async-when-sync-expected
     - avoid-redundant-async
     - avoid-unnecessary-type-assertions
     - avoid-unnecessary-type-casts

@@ -1,5 +1,4 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -7,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:navigation_assignment/core/colors/colors.dart';
 import 'package:navigation_assignment/core/dependency_injection/singleton_locator.dart';
 import 'package:navigation_assignment/core/services/page_route_constants.dart';
-import 'package:navigation_assignment/features/authentication/data/datasource/firebase_auth_services.dart';
 import 'package:navigation_assignment/features/authentication/domain/usecases/auth_usecases.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -194,7 +192,7 @@ class _LoginState extends State<Login> {
                         fontStyle: FontStyle.normal),
                   ),
                   onPressed: () async {
-                    try {
+                    
                       FirebaseAnalytics.instance.logLogin(
                           loginMethod: 'email',
                           parameters: <String, dynamic>{
@@ -215,20 +213,24 @@ class _LoginState extends State<Login> {
                         //   ),
                         // );
                       }
+                      
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(message),
                         ),
                       );
-                    } catch (e, stackTrace) {
-                      FirebaseCrashlytics.instance.recordError(e, stackTrace);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                              'An unexpected error occurred. Please try again.'),
-                        ),
-                      );
-                    }
+
+   
+                      FirebaseCrashlytics.instance.log(message);
+                      // FirebaseCrashlytics.instance.crash();
+
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(
+                      //     content: Text(
+                      //         'An unexpected error occurred. Please try again.'),
+                      //   ),
+                      // );
+                  
                     // if (formKey.currentState!.validate()) {
                     //   String username = usernameController.text;
                     //   String password = passwordController.text;

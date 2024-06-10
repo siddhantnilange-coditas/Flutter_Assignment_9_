@@ -75,21 +75,21 @@ class Settings extends StatelessWidget {
                       return RadioListTile<int>(
                         contentPadding: EdgeInsets.zero,
                         title: Text(
-                          
-                          languages[index], 
-                          ),
+                          languages[index],
+                        ),
                         value: index,
                         groupValue: state.selectedIndex,
                         onChanged: (int? value) {
-                              FirebaseAnalytics.instance.logEvent(
-                      name: 'language_changed',
-                      parameters: <String, dynamic>{
-                        'new_language' : languages[value!],
-                      }
-                    );
-                          if (value != null) {
-                            context.read<LanguageBloc>().add(SelectedLanguageEvent(value));
-                          }
+                          FirebaseAnalytics.instance.logEvent(
+                              name: 'language_changed',
+                              parameters: <String, dynamic>{
+                                'new_language': languages[value!],
+                              });
+                         
+                            context
+                                .read<LanguageBloc>()
+                                .add(SelectedLanguageEvent(value));
+                        
                         },
                       );
                     },
@@ -101,12 +101,11 @@ class Settings extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: InkWell(
                     onTap: () async {
-                        FirebaseAnalytics.instance.logEvent(
-                      name: 'logout',
-                      parameters: <String, dynamic>{
-                        'logout' : 'logouted_from_app',
-                      }
-                    );
+                      FirebaseAnalytics.instance.logEvent(
+                          name: 'logout',
+                          parameters: <String, dynamic>{
+                            'logout': 'logouted_from_app',
+                          });
                       final sharedPref = await SharedPreferences.getInstance();
                       sharedPref.setBool(SplashScreenState.loginStatus, false);
                       context.go('/login');

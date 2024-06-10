@@ -198,6 +198,7 @@ class _RegistrationState extends State<Registration> {
                   );
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
+                  
                   SnackBar(
                     content: Text(message),
                   ),

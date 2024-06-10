@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:navigation_assignment/core/services/page_route_constants.dart';
@@ -21,14 +22,14 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final onboardingTabNavigatorKey = GlobalKey<NavigatorState>();
 
 final router = GoRouter(
-  initialLocation: '/splash-screen',
+  initialLocation: '/home',
   navigatorKey: _rootNavigatorKey,
   routes: [
-    GoRoute(
-      path: '/splash-screen',
-      name: 'splash',
-      builder: (context, state) => SplashScreen(),
-    ),
+    // GoRoute(
+    //   path: '/splash-screen',
+    //   name: 'splash',
+    //   builder: (context, state) => SplashScreen(),
+    // ),
     GoRoute(
       path: '/onboarding',
       name: MyAppRouteConstants.onboardingRouteName,

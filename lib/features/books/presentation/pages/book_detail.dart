@@ -32,6 +32,7 @@ class BookDetail extends StatelessWidget {
                   child: Text(
                     // state.book,
                     'Book Details',
+                    
                     style: TextStyle(
                       fontSize: 20,
                       color: blackColor,

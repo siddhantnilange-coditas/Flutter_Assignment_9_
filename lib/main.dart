@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:navigation_assignment/core/dependency_injection/singleton_locator.dart';
 import 'package:navigation_assignment/core/services/routes.dart';
 // import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -25,14 +26,14 @@ Future<void> main() async {
   );
   // FirebaseFirestore.instance.settings = Settings(persistenceEnabled: true);
 
-  await FirebaseApi().initNotifications();
+  await PushNotifications().initNotifications();
   FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance);
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
   PlatformDispatcher.instance.onError = (error, stack) {
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-      
-      return true;
-    };
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+
+    return true;
+  };
   runApp(BlocProvider(
     create: (context) => LanguageBloc(),
     child: const MyApp(),
@@ -53,12 +54,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-    final FirebaseAnalyticsObserver observer = FirebaseAnalyticsObserver(analytics: analytics);
+    final FirebaseAnalytics analytics = FirebaseAnalytics.instance;
+    final FirebaseAnalyticsObserver observer =
+        FirebaseAnalyticsObserver(analytics: analytics);
 
     return BlocBuilder<LanguageBloc, LanguageState>(
       builder: (context, state) {
         return MaterialApp(
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
           home: MaterialApp.router(
             routerConfig: router,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -101,13 +107,13 @@ class MyApp extends StatelessWidget {
 
   Locale _indexToLocale(int index) {
     switch (index) {
-      case 1:
+      case 0:
         return const Locale('en');
-      case 2:
+      case 1:
         return const Locale('hi');
-      case 3:
+      case 2:
         return const Locale('mr');
-      case 4:
+      case 3:
         return const Locale('ar');
 
       default:
